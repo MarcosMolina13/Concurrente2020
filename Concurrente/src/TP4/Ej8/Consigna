@@ -1,0 +1,22 @@
+Implementar una carrera por relevos:
+Tenemos 4 atletas dispuestos a correr, además se cuenta con una clase principal Carrera y un
+objeto estático testigo. Todos los atletas empiezan parados, uno comienza a correr (tarda
+entre 9 y 11s) y al terminar su carrera pasa el testigo a otro que comienza a correr, y así
+sucesivamente. Diseñe un modelo que represente dicho enunciado. La solución debe estar
+libre de bloqueos y debe maximizar la concurrencia de los hilos.
+Pistas:
+● Thread.sleep y Math.random para simular la carrera
+● Utilizar un Semaphore como testigo
+● System.currentTimeMillis para ver tiempos
+● Elija una de las siguientes opciones para implementar
+
+
+opcion 1:
+
+atleta(con testigo)  ------------->  atleta
+
+atleta              <-------------- atleta
+
+opcion 2:
+
+atleta(salida)-----> atleta-------> atleta---------> atleta(llegada)
