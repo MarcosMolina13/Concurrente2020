@@ -17,9 +17,9 @@ public class Taxi {
     private Semaphore semTaxista;
     private Semaphore semFinRecorrido;
  public Taxi(){
-     semTaxi=new Semaphore(1);
-     semTaxista=new Semaphore(0);
-     semFinRecorrido=new Semaphore (0);
+     semTaxi=new Semaphore(1,true);
+     semTaxista=new Semaphore(0,true);
+     semFinRecorrido=new Semaphore (0,true);
  }   
  public void despertarTaxista(){
      System.out.println(Thread.currentThread().getName()+" avisa al taxista");
