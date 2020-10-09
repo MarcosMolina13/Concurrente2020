@@ -5,6 +5,7 @@
  */
 package TP4.Ej13;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,19 +32,14 @@ public class Empleado implements Runnable{
             Logger.getLogger(Mozo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void pedirOrden(){
-        int orden=(int)(Math.random()*2);
-        switch(orden){
-            case 0:System.out.println(nombre+" Solo pedira una bebida");confiteria.despertarMozo(); confiteria.pedirBebida();break;
-            case 1:System.out.println(nombre+" Solo pedira comida");confiteria.despertarCocinero();confiteria.pedirComida();break;
-            case 2:System.out.println(nombre+" Solo pedira una bebida y comida");confiteria.despertarMozo();confiteria.pedirBebida();confiteria.despertarCocinero();confiteria.pedirComida();break;
-        }
+    
         
         
-    }
+    
     public void run(){
         confiteria.ocuparSilla();
-        this.pedirOrden();
+        confiteria.pedirOrden();
+        confiteria.esperar();
         this.comer();
         confiteria.desocuparSilla();
         

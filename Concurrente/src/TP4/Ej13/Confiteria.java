@@ -9,21 +9,18 @@ package TP4.Ej13;
  *
  * @author Marcos
  */
+import TP4.Ej14.*;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class Confiteria {
     private Semaphore semLugar;
-    private Semaphore semComida;// lo usaria el cocinero para avisar al mozo que esta la comida 
     private Semaphore semMozo;
-    private Semaphore semBebida;
     private Semaphore semOrdenLista;
     private String nombre;
     public Confiteria(String n){
         nombre=n;
-        semLugar=new Semaphore(2,true);
-        semComida=new Semaphore (0,true);
-        semBebida=new Semaphore (0,true);
+        semLugar=new Semaphore(1,true);
         semMozo=new Semaphore(0,true);
         semOrdenLista=new Semaphore (0,true);
     }
@@ -44,46 +41,27 @@ public class Confiteria {
     }
      public void hobbieMozo(){
         try {
-            System.out.println(Thread.currentThread().getName()+" esta descansando");
+            System.out.println(Thread.currentThread().getName()+" esta inventando recetas");
             semMozo.acquire();//el mozo esta esperando a los empleados
         } catch (InterruptedException ex) {
             Logger.getLogger(Confiteria.class.getName()).log(Level.SEVERE, null, ex);
         }
      }    
-     public void pedirBebida(){
+    
+     public void esperar(){
         try {
-            semBebida.acquire();// el empleado le pide una bebida
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Confiteria.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     }
-     public void entregarBebida(){
-         semBebida.release();
-     }
-     public void pedirComida(){
-        try {
-            semComida.acquire();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Confiteria.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     }
-     public void entregarComida(){
-         semComida.release();
-         System.out.println(Thread.currentThread().getName()+" entrego comida");
-     }
-     public void tomarOrden(){
-        try {
+            System.out.println(Thread.currentThread().getName() +"esta esperando su comida");
             semOrdenLista.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(Confiteria.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-     public void despertarCocinero(){
-         System.out.println(Thread.currentThread().getName()+" desperto al cocinero");
+     public void ordenLista(){
+         System.out.println(Thread.currentThread().getName()+" entrega orden a cliente");
          semOrdenLista.release();
      }
-   public void despertarMozo(){
-       System.out.println(Thread.currentThread().getName()+" desperto al mozo");
+   public void pedirOrden(){
+       System.out.println(Thread.currentThread().getName()+" pidio orden al mozo");
        semMozo.release();//el empleado llama al mozo para que lo atienda 
        
    }

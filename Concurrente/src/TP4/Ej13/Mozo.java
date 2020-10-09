@@ -5,6 +5,7 @@
  */
 package TP4.Ej13;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,12 +23,12 @@ public class Mozo implements Runnable {
         confiteria = c;
     }
 
-    public void prepararbebida() {
+    public void prepararOrden() {
 
         int tiempoPreparacion = (int) (Math.random() * 3) + 5;// entre 5 y 7 segundos
 
         try {
-            System.out.println("El mozo esta preparando la bebida");
+            System.out.println("El mozo esta preparando la orden");
             Thread.sleep(tiempoPreparacion * 1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Mozo.class.getName()).log(Level.SEVERE, null, ex);
@@ -36,9 +37,10 @@ public class Mozo implements Runnable {
 
     public void run() {
         while (true) {
-            confiteria.hobbieMozo();
-            this.prepararbebida();
-            confiteria.entregarBebida();
+           confiteria.hobbieMozo();
+           this.prepararOrden();
+           confiteria.ordenLista();
+          
         }
 
     }
