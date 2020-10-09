@@ -25,7 +25,7 @@ public class Empleado implements Runnable{
             int tiempoPreparacion=(int)(Math.random()*4)+6;// entre 6 y 9 segundos
         
             try {
-                System.out.println("El empleado esta comiendo");
+                System.out.println("El" +nombre+ "esta comiendo");
             Thread.sleep(tiempoPreparacion*1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Mozo.class.getName()).log(Level.SEVERE, null, ex);

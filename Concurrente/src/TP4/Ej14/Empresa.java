@@ -11,7 +11,7 @@ package TP4.Ej14;
  */
 public class Empresa {
     public static void main(String[] args) {
-        Confiteria confiteria=new Confiteria("Los pollos hermanos");
+        Confiteria confiteria=new Confiteria("Los pollos hermanos",2);
         Mozo m1=new Mozo("Mozo1",confiteria);
         Cocinero c1=new Cocinero("Cocinero1",confiteria);
         Cocinero c2=new Cocinero("Cocinero2",confiteria);
